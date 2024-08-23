@@ -1,6 +1,6 @@
-#include<iostream>
-#include"MyClass.h"
-using namespace std;
+
+#include"MyClass.cpp"
+// using namespace N;
 
 int main(){
     MyClass MyObj(33);
