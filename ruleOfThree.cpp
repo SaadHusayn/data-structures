@@ -38,6 +38,7 @@
     }
     int main()
     {
+        ios::sync_with_stdio(false);
         int vals[4] = {11, 22, 33, 44};
         Array a1(4, vals);
         // This line causes problems.
