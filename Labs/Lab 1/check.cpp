@@ -1,9 +1,8 @@
 #include<iostream>
 #include<string>
+#include<cassert>
 using namespace std;
 
 int main(){
-    string *str = new string;
-    *str = "Hello";
-    cout<<*str<<" "<<sizeof(str)<<" "<<sizeof(*str);
+    assert((void("hello"), 0));
 }
