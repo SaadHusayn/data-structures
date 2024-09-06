@@ -1,5 +1,8 @@
 #include<iostream>
 #include "intSLList.h"
+#include <algorithm>
+
+
 
 IntSLList::~IntSLList() {
     for(IntSLLNode *p; !isEmpty();){
@@ -45,4 +48,37 @@ int IntSLList::deleteFromTail(){
         head = tail = 0;
     }
     return data;
+}
+
+void IntSLList::deleteNode(int _data){
+    // if(head->data == _data){//head is to be deleted
+    //     deleteFromHead();
+    // }
+    // else if(tail->data == _data){//tail is to be deleted
+    //     deleteFromTail();
+    // }
+    // else{//middle node is to be deleted
+    //     IntSLLNode *prev = head;
+    //     IntSLLNode *tmp = head->next;
+    //     for(;tmp->next != 0 && tmp->data != _data;prev=tmp, tmp=tmp->next);
+    //     if(tmp->data == _data){//node found
+    //         prev->next = tmp->next;
+    //         delete tmp;
+    //     }
+    // }
+
+    if(head != 0){//list is not empty
+        if(head == tail && head->data==_data){//if list has only node
+            delete head;
+            head = tail = 0;
+        }
+        else if(head->data == _data){//if list has more than one nodes and head is the required node
+            IntSLLNode *tmp = head;
+            head = head->next;
+            delete tmp;
+        }
+        else{//list has more than one nodes and head node is not the required node
+            
+        }
+    }
 }
