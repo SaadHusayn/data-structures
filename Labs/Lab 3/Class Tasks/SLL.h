@@ -65,6 +65,45 @@ class SLL
         newNode->next = prev->next;
         prev->next = newNode;
     }
+
+    void deleteNode(Node *node)
+    {
+        if (head == nullptr || node == nullptr)
+            return;
+
+        if (head == node)
+        {
+            head = head->next;
+            delete node;
+            return;
+        }
+
+        Node *prev = head;
+        while (prev->next != nullptr && prev->next != node)
+        {
+            prev = prev->next;
+        }
+
+        if (prev->next == nullptr)
+            return;
+
+        prev->next = node->next;
+        delete node;
+    }
+void updateNode(int valToFind, int newValToReplace)
+{
+    Node *curr = head;
+    while (curr != nullptr)
+    {
+        if (curr->val == valToFind)
+        {
+            curr->val = newValToReplace;
+            return;
+        }
+        curr = curr->next;
+    }
+}
+
 };
 
 #endif

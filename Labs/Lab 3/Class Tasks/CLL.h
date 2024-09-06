@@ -33,7 +33,10 @@ class CLL{
     }
 
     void insertAtFront(int _val){
-        
+        Node *n = new Node(_val);
+        tail->next = n;
+        n->next = head;
+        head = n;
     }
 };
 
