@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "*.html": "html",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "xstring": "cpp",
+        "iostream": "cpp"
     }
 }
