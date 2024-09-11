@@ -10,8 +10,12 @@ public:
     int val;
     Node *next;
 
+    Node(int _val,Node* _next):val(_val), next(_next){}
     Node() { next = nullptr; }
     Node(int _val) : val(_val) { next = nullptr; }
+
+
+    
 };
 
 class SLL
@@ -102,6 +106,16 @@ void updateNode(int valToFind, int newValToReplace)
         }
         curr = curr->next;
     }
+}
+
+static void printNode(Node *n){
+    if(n==nullptr){
+        cout<<endl;
+        return;
+    }
+
+    cout<<n->val<<" ";
+    printNode(n->next);
 }
 
 };
