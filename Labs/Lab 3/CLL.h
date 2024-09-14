@@ -12,6 +12,7 @@ public:
 
     Node() { next = nullptr; }
     Node(int _val) : val(_val) { next = nullptr; }
+    Node(int _val, Node *_next):val(_val), next(_next){}
 };
 
 class CLL
@@ -26,9 +27,13 @@ public:
         tail = nullptr;
     }
 
-    void insertAtEnd(int _val)
+    CLL(Node *n){
+        head = n;
+        tail = n;
+    }
+
+    void insertAtEnd(Node *n)
     {
-        Node *n = new Node(_val);
 
         if (head == nullptr)
         {
@@ -44,9 +49,8 @@ public:
         }
     }
 
-    void insertAtFront(int _val)
+    void insertAtFront(Node *n)
     {
-        Node *n = new Node(_val);
 
         if (head == nullptr)
         {
@@ -59,6 +63,66 @@ public:
             tail->next = n;
             n->next = head;
             head = n;
+        }
+    }
+
+    void insertAtPos(int pos, Node *n){
+        if(pos == 1){
+            insertAtFront(n);
+        }else{
+            
+
+            //traverse just before the inserting position
+            auto curr = head;
+            int currPos = 1;
+            for(;currPos!=(pos-1)  && curr->next!=head;curr=curr->next, currPos++);
+
+            //if position is out of the size of linkedlist then we cannot insert
+            if(currPos != (pos-1)) return;
+
+            //now insert the new node at the given position
+            n->next = curr->next;
+            curr->next = n;
+        }
+    }
+
+    void deleteNode(Node *n){
+        //if its the only node of linked list
+        if(head==n && tail==n){
+            delete n;
+            head = 0;
+            tail = 0;
+            return;
+        }
+
+        //if its head
+        if(head == n){
+            head = head->next;
+            delete n;
+            return;
+        }
+
+        auto prev = head;
+        auto curr = head->next;
+
+        while(curr->next!=head){
+            if(curr==n){
+                curr = curr->next;
+                prev->next = curr;
+                delete n;
+                return;
+            }else{
+                prev = curr;
+                curr = curr->next;
+            }
+        }
+
+        //if the tail has to be deleted
+        if(curr == n){
+            prev->next = head;
+            tail = prev;
+            delete n;
+            return;
         }
     }
 
