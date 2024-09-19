@@ -11,26 +11,34 @@ void mySwap(int &a, int &b){
 
 void bubbleSort(int *arr, int size){
     for(auto i=0;i<size-1;i++){
+        bool isSwapped = false;
         for(auto j=0;j<size-i-1;j++){
-            if(arr[j] > arr[j+1]) mySwap(arr[j], arr[j+1]);
+            if(arr[j+1]<arr[j]) {
+                mySwap(arr[j], arr[j+1]);
+                isSwapped = true;
+            };
+        }
+
+        if(!isSwapped){
+            break;
         }
     }
 }
 
 void selectionSort(int *arr, int size){
     for(auto i=0;i<size-1;i++){
-        auto min_value = i;
+        auto index = i;
         for(auto j=i+1;j<size;j++){
-            if(arr[j] < arr[min_value]) min_value = j;
+            if(arr[j]<arr[index]) index = j;
         }
 
-        mySwap(arr[i], arr[min_value]);
+        mySwap(arr[i], arr[index]);
     }
 }
 
 void insertionSort(int *arr, int size){
-    for(auto i=0;i<size;i++){
-        for(auto j=i;j>0 && (arr[j-1] < arr[j]); j--) mySwap(arr[j], arr[j-1]);
+    for(int i=1;i<size;i++){
+        for(auto j=i;j>0 && (arr[j]<arr[j-1]);j--) mySwap(arr[j], arr[j-1]);
     }
 }
 
@@ -58,7 +66,7 @@ void printArr(int *arr, int size){
 int main(){
     int arr[] = {2 , 6, 1, 9, 5, 3};
     printArr(arr, 6);
-    shellSort(arr, 6);
+    bubbleSort(arr, 6);
     printArr(arr, 6);
 
 }
