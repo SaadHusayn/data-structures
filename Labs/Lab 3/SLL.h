@@ -14,7 +14,6 @@ public:
     Node() { next = nullptr; }
     Node(int _val) : val(_val) { next = nullptr; }
 
-
     
 };
 

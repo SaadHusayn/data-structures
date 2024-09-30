@@ -6,7 +6,7 @@ int binarySearch(int arr[], int size, int target){
     int end = size - 1;
     int mid=0;
     while(start<=end){
-        mid = (start + end)/2;
+        mid = start + (end-start)/2;
 
         if(target==arr[mid]) return mid;
 
@@ -21,7 +21,27 @@ int binarySearch(int arr[], int size, int target){
     return -1;
 }
 
+int interpolationSearch(int arr[], int size, int target){
+    int low  = 0;
+    int high = size - 1;
+    int pos=0;
+    while(low<=high && target>=arr[low]  && target<=arr[high]){
+        pos = low + (target - arr[low])*(high - low)/(arr[high] - arr[low]);
+
+        if(target==arr[pos]) return pos;
+
+        if(arr[pos]>target){
+            high = pos - 1;
+        }
+        if(arr[pos]<target){
+            low = pos + 1;
+        }
+    }
+
+    return -1;
+}
+
 int main(){
     int arr[] = {1, 2, 3, 5, 6, 9};
-    cout<<binarySearch(arr, 5, 322);
+    cout<<interpolationSearch(arr, 6, 3);
 }
