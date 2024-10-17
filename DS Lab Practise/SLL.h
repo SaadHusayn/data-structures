@@ -10,7 +10,8 @@ public:
     int val;
     Node *next;
 
-    Node(int _val=0, Node *_next=nullptr) : val(_val) { next = _next; }
+    Node() { next = nullptr; }
+    Node(int _val) : val(_val) { next = nullptr; }
 };
 
 class SLL

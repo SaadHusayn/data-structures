@@ -11,7 +11,7 @@ class Node{
     Node *prev;
 
     Node(){next = nullptr; prev=nullptr;}
-    Node(int _val=0, Node *_next=nullptr, Node*_prev = nullptr):val(_val){next = _next;prev=_prev;}
+    Node(int _val):val(_val){next = nullptr;prev=nullptr;}
 
 
 };
