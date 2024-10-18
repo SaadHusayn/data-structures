@@ -39,10 +39,13 @@ print(tmp);
 
 
 int main(){
-    Node *n = new Node{17, new Node{15, new Node{8, new Node{12, new Node{10, new Node{5, new Node{4, new Node{1, new Node{7, new Node{6, nullptr}}}}}}}}}};
+    // Node *n = new Node{17, new Node{15, new Node{8, new Node{12, new Node{10, new Node{5, new Node{4, new Node{1, new Node{7, new Node{6, nullptr}}}}}}}}}};
 
-    print(n);
+    // print(n);
 
-    n = oddThenEven(n);
+    // n = oddThenEven(n);
+
+    string s = "3";
+    cout<<('3' == "3")<<endl;
 
 }
