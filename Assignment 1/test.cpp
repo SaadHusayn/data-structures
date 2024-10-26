@@ -4,12 +4,14 @@
 using namespace std;
 
 int main() {
-  TimeStamp t;
-  cout<<t;
 
-  system("pause");
+  // TimeStamp t;
+  // cout<<t;
 
-  t.update();
-  cout<<t;
+  // system("pause");
+
+  // t.update();
+  // cout<<t;
+
   return 0;
 }

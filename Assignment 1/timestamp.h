@@ -19,6 +19,11 @@ class TimeStamp{
         datetime = *localtime(&timestamp);
     }
 
+    bool operator<(const TimeStamp &other) const {
+        return timestamp < other.timestamp; // Compare timestamps
+    }
+
+
     friend std::ostream& operator<<(std::ostream& out, const TimeStamp& obj);
 
 

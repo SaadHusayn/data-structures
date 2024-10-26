@@ -1,0 +1,3 @@
+default_sorting_algorithm=merge
+default_searching_algorithm=bubble
+threshold=10
