@@ -1,46 +1,44 @@
-#include<iostream>
-#include<vector>
-#include<climits>
+#include<bits/stdc++.h>
 using namespace std;
 
-void solve(){
+int solve(){
     int n;
     cin>>n;
+    vector<vector<int>> v(n, vector<int>(2));
 
-    int **a = new int*[n];
     for(int i=0;i<n;i++){
-        a[i] = new int[n];
-        for(int j=0;j<n;j++){
-            cin>>a[i][j];
-        }
+        cin>>v[i][0]>>v[i][1];
     }
 
-    int singleMax = INT_MIN;
-    for(int i=0;i<n;i++){
-        auto sum = 0 ;
-        for(int j=0;j<n-i;j++){
-            singleMax = max(singleMax, a[i+j][j]);
-            sum += a[i+j][j];
-        }
-        singleMax = max(singleMax, sum);
-    }
+    int wbound = v[0][0];
+    int hbound = v[0][1];
+
+    int current_parameter = 2*(wbound + hbound);
 
     for(int i=1;i<n;i++){
-        auto sum = 0 ;
-        for(int j=0;j<n-i;j++){
-            singleMax = max(singleMax, a[i+j][j]);
-            sum += a[i+j][j];
+        int hdiff = 0;
+        int wdiff = 0;
+
+        if(v[i][0] > wbound){
+            wdiff = v[i][0] - wbound;
+            wbound = v[i][0];
         }
-        singleMax = max(singleMax, sum);
+
+        if(v[i][1] > hbound){
+            hdiff = v[i][1] - hbound;
+            hbound = v[i][1];
+        }
+
+        current_parameter += 2*wdiff + 2*hdiff;
     }
 
-    cout<<singleMax<<endl;
+    return current_parameter;
 }
 
 int main(){
     int t;
     cin>>t;
     while(t--){
-        solve();
+        cout<<solve()<<endl;
     }
 }
