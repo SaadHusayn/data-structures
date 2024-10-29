@@ -4,14 +4,14 @@
 #include<iostream>
 
 
-class BinaryTree{
+class BST{
     public:
     int val;
-    BinaryTree *leftChild;
-    BinaryTree *rightChild;
+    BST *leftChild;
+    BST *rightChild;
 
 
-    BinaryTree(int _val=0, BinaryTree *_leftChild=nullptr, BinaryTree *_rightChild=nullptr){
+    BST(int _val=0, BST *_leftChild=nullptr, BST *_rightChild=nullptr){
         val = _val;
         leftChild = _leftChild;
         rightChild = _rightChild;
@@ -21,7 +21,7 @@ class BinaryTree{
     
 };
 
-void traversePreOrder(BinaryTree *node){
+void traversePreOrder(BST *node){
     if(node != nullptr){
         std::cout<<" "<<node->val;
         traversePreOrder(node->leftChild);
@@ -29,7 +29,7 @@ void traversePreOrder(BinaryTree *node){
     }
 }
 
-void traverseInOrder(BinaryTree *node){
+void traverseInOrder(BST *node){
     if(node != nullptr){
         traverseInOrder(node->leftChild);
         std::cout<<" "<<node->val;
@@ -37,7 +37,7 @@ void traverseInOrder(BinaryTree *node){
     }
 }
 
-void traversePostOrder(BinaryTree *node){
+void traversePostOrder(BST *node){
     if(node != nullptr){
         traversePostOrder(node->leftChild);
         traversePostOrder(node->rightChild);
@@ -45,7 +45,7 @@ void traversePostOrder(BinaryTree *node){
     }
 }
 
-bool find(BinaryTree *node, int key){
+bool find(BST *node, int key){
     if(node == nullptr) return false;
     if(node->val == key) return true;
 
@@ -53,8 +53,8 @@ bool find(BinaryTree *node, int key){
     return find(node->rightChild, key);
 }
 
-void insert(BinaryTree *&node, int data){
-    if(node == nullptr) {node = new BinaryTree{data}; return;}
+void insert(BST *&node, int data){
+    if(node == nullptr) {node = new BST{data}; return;}
     if(node->val == data) return;
 
     if(node->val > data) insert(node->leftChild, data);

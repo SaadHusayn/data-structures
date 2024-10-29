@@ -109,11 +109,7 @@ class DLL{
     }
 
 
-
-    
-};
-
-    void display(Node *n){
+       static void display(Node *n){
         if(n == nullptr){
             std::cout<<std::endl;
             return;
@@ -122,6 +118,10 @@ class DLL{
         std::cout<<n->val<<" ";
         display(n->next);
     }
+    
+};
+
+
 
 
 #endif

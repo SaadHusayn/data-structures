@@ -1,16 +1,23 @@
 #include<iostream>
-#include"BinaryTree.h"
+#include"BST.h"
 
 using namespace std;
 
 int main(){
 
-    BinaryTree *root = new BinaryTree{4, new BinaryTree{2, new BinaryTree{0}, new BinaryTree{3}}, new BinaryTree{6, new BinaryTree{5}, new BinaryTree{9}}};
+    BST *bt = new BST(1);
 
-    traverseInOrder(root);
+    for(int i=2;i<=10;i++){
+        BST::insertNode(bt, i);
+    }
+
+    BST::traverseInOrder(bt);
     cout<<endl;
-    insert(root, 7);
-    traverseInOrder(root);
-    cout<<endl;
+
+    BST::deleteNode(bt, 1);
+
+    BST::traversePostOrder(bt);
+
+
 
 }
