@@ -7,7 +7,7 @@ string getCurrentTime() {
     time_t now = time(0);
     return ctime(&now);
 }
-// Ticket Class
+
 class Ticket {
 public:
     int ticketID;
@@ -31,7 +31,7 @@ struct TicketNode {
     TicketNode* next;
     TicketNode(Ticket t) : ticket(t), next(nullptr) {}
 };
-// Linked List for Ticket Management
+
 class TicketList {
 private:
     TicketNode* head;
@@ -237,7 +237,7 @@ public:
         }
     }
 };
-// Agent Class
+
 class Agent {
 public:
     int agentID;
@@ -273,7 +273,7 @@ public:
         return ticketCount;
     }
 };
-// Queue for Pending Tickets
+
 struct QueueNode {
     Ticket ticket;
     QueueNode* next;
@@ -320,7 +320,7 @@ public:
         }
     }
 };
-// Stack for Resolved Tickets
+
 struct StackNode {
     Ticket ticket;
     StackNode* next;
@@ -359,7 +359,7 @@ public:
         }
     }
 };
-// Configuration Class for Sorting Algorithms
+
 class Config {
 public:
     int defaultSortAlgorithm;
