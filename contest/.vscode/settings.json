@@ -4,6 +4,8 @@
         "*.html": "html",
         "utility": "cpp",
         "format": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "vector": "cpp",
+        "ostream": "cpp"
     }
 }
