@@ -1,10 +1,10 @@
-#ifndef MAX_HEAP_H
-#define MAX_HEAP_H
+#ifndef MIN_HEAP_H
+#define MIN_HEAP_H
 
 #include <iostream>
 using namespace std;
 
-class MaxHeap {
+class MinHeap {
 public:
     int* heapArray;   // Pointer to the array representing the heap
     int capacity;     // Maximum capacity of the heap
@@ -15,7 +15,7 @@ public:
         while (index > 0) {
             int parent = (index - 1) / 2;
 
-            if (heapArray[index] > heapArray[parent]) {
+            if (heapArray[index] < heapArray[parent]) {
                 swap(heapArray[index], heapArray[parent]);
                 index = parent;
             } else {
@@ -29,19 +29,19 @@ public:
         while (index < size) {
             int leftChild = 2 * index + 1;
             int rightChild = 2 * index + 2;
-            int largest = index;
+            int smallest = index;
 
-            if (leftChild < size && heapArray[leftChild] > heapArray[largest]) {
-                largest = leftChild;
+            if (leftChild < size && heapArray[leftChild] < heapArray[smallest]) {
+                smallest = leftChild;
             }
 
-            if (rightChild < size && heapArray[rightChild] > heapArray[largest]) {
-                largest = rightChild;
+            if (rightChild < size && heapArray[rightChild] < heapArray[smallest]) {
+                smallest = rightChild;
             }
 
-            if (largest != index) {
-                swap(heapArray[index], heapArray[largest]);
-                index = largest;
+            if (smallest != index) {
+                swap(heapArray[index], heapArray[smallest]);
+                index = smallest;
             } else {
                 break;
             }
@@ -49,14 +49,14 @@ public:
     }
 
     // Constructor to initialize the heap with a given capacity
-    MaxHeap(int maxCapacity) {
+    MinHeap(int maxCapacity) {
         capacity = maxCapacity;
         size = 0;
         heapArray = new int[capacity];
     }
 
     // Destructor to clean up allocated memory
-    ~MaxHeap() {
+    ~MinHeap() {
         delete[] heapArray;
     }
 
@@ -73,8 +73,8 @@ public:
         return true;
     }
 
-    // Deletes the maximum value (root) from the heap
-    bool deleteMax(int& deletedValue) {
+    // Deletes the minimum value (root) from the heap
+    bool deleteMin(int& deletedValue) {
         if (size <= 0) {
             cerr << "Heap is empty. Cannot delete element." << endl;
             return false;
@@ -106,4 +106,4 @@ public:
     }
 };
 
-#endif // MAX_HEAP_H
+#endif // MIN_HEAP_H
