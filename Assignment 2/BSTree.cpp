@@ -136,12 +136,12 @@ BST * deleteNode(BST *&tree, int ID){
     return tree;
 }
 
-int inOrderPredecessor(BST *tree,int v){
+int inOrderPredecessor(BST *tree,int ID){
     int Predecessor = -1;
 
     while(tree!=nullptr){
-        if(tree->val < v) {
-            Predecessor = tree->val;
+        if(tree->rec.id < ID) {
+            Predecessor = tree->rec.id;
             tree = tree->right;
         }else{
             tree = tree->left;
@@ -151,14 +151,14 @@ int inOrderPredecessor(BST *tree,int v){
     return Predecessor;
 }
 
-int inOrderSuccessor(BST *tree,int v){
+int inOrderSuccessor(BST *tree,int ID){
     int successor = -1;
 
     while(tree!=nullptr){
-        if(v >= tree->val) {
+        if(tree->rec.id >= tree->rec.id) {
             tree = tree->right;
         }else{
-            successor = tree->val;
+            successor = tree->rec.id;
             tree = tree->left;
         }
     }
@@ -169,20 +169,18 @@ int inOrderSuccessor(BST *tree,int v){
 int main()
 {
     BST *tree = new BST(1);
-    for (int i = 2; i <= 10; i++)
-        insert(tree, i);
 
-    tree = insert(tree, 21);
-    tree = insert(tree, 20);
-    tree = insert(tree, 6);
+    tree = insert(tree, 1, "Saad", 18);
+    tree = insert(tree, 2, "Sabih",  19);
+    tree = insert(tree, 3, "Tanzeel", 20);
+
+    inOrder(tree);
 
     tree = deleteNode(tree, 1);
 
+    cout<<endl;
+    tree = insert(tree, 1, "Tabish", 20);
+
     inOrder(tree);
     cout<<endl;
-    cout<<"Inorder successor of 8 is "<<inOrderSuccessor(tree, 8);
-
-
-    cout<<endl;
-    cout<<"Inorder successor of 8 is "<<inOrderPredecessor(tree, 8);
 }

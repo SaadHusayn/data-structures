@@ -3,18 +3,35 @@
 #include <iostream>
 using namespace std;
 
-class Node {
+class Record {
+    public:
+    int id;
+    std::string name;
+    int age;
+
+
+    Record(int _id=0, std::string _name="", int _age=0) : id(_id), name(_name), age(_age) {}
+};
+
+class AVL {
    public:
-  int key;
-  Node *left;
-  Node *right;
+  Record rec;
+  AVL *left;
+  AVL *right;
   int height;
+
+  AVL(Record _rec = Record()){
+    rec = _rec;
+    left =  nullptr;
+    right = nullptr;
+    height = 1;
+  }
 };
 
 int max(int a, int b);
 
 // Calculate height
-int height(Node *N) {
+int height(AVL *N) {
   if (N == NULL)
     return 0;
   return N->height;
@@ -24,20 +41,12 @@ int max(int a, int b) {
   return (a > b) ? a : b;
 }
 
-// New node creation
-Node *newNode(int key) {
-  Node *node = new Node();
-  node->key = key;
-  node->left = NULL;
-  node->right = NULL;
-  node->height = 1;
-  return (node);
-}
+
 
 // Rotate right
-Node *rightRotate(Node *y) {
-  Node *x = y->left;
-  Node *T2 = x->right;
+AVL *rightRotate(AVL *y) {
+  AVL *x = y->left;
+  AVL *T2 = x->right;
   x->right = y;
   y->left = T2;
   y->height = max(height(y->left),
@@ -50,9 +59,9 @@ Node *rightRotate(Node *y) {
 }
 
 // Rotate left
-Node *leftRotate(Node *x) {
-  Node *y = x->right;
-  Node *T2 = y->left;
+AVL *leftRotate(AVL *x) {
+  AVL *y = x->right;
+  AVL *T2 = y->left;
   y->left = x;
   x->right = T2;
   x->height = max(height(x->left),
@@ -64,136 +73,132 @@ Node *leftRotate(Node *x) {
   return y;
 }
 
-// Get the balance factor of each node
-int getBalanceFactor(Node *N) {
+// Get the balance factor of each AVL
+int getBalanceFactor(AVL *N) {
   if (N == NULL)
     return 0;
   return height(N->left) -
        height(N->right);
 }
 
-Node* balanceNode(Node* node) {
-    int balanceFactor = getBalanceFactor(node);
+AVL* balanceAVL(AVL* tree) {
+    int balanceFactor = getBalanceFactor(tree);
 
     // Left-heavy case
     if (balanceFactor > 1) {
-        if (getBalanceFactor(node->left) >= 0) {
+        if (getBalanceFactor(tree->left) >= 0) {
             // Left-Left Case
-            return rightRotate(node);
+            return rightRotate(tree);
         } else {
             // Left-Right Case
-            node->left = leftRotate(node->left);
-            return rightRotate(node);
+            tree->left = leftRotate(tree->left);
+            return rightRotate(tree);
         }
     }
 
     // Right-heavy case
     if (balanceFactor < -1) {
-        if (getBalanceFactor(node->right) <= 0) {
+        if (getBalanceFactor(tree->right) <= 0) {
             // Right-Right Case
-            return leftRotate(node);
+            return leftRotate(tree);
         } else {
             // Right-Left Case
-            node->right = rightRotate(node->right);
-            return leftRotate(node);
+            tree->right = rightRotate(tree->right);
+            return leftRotate(tree);
         }
     }
 
-    // Node is balanced, no rotation needed
-    return node;
+    // AVL is balanced, no rotation needed
+    return tree;
 }
 
 
-// Insert a node
-Node *insertNode(Node *node, int key) {
-  // Find the correct postion and insert the node
-  if (node == NULL)
-    return (newNode(key));
-  if (key < node->key)
-    node->left = insertNode(node->left, key);
-  else if (key > node->key)
-    node->right = insertNode(node->right, key);
+// Insert a AVL
+AVL *insertAVL(AVL *tree, int ID, string name, int age) {
+  // Find the correct postion and insert the AVL
+  if (tree == NULL)
+    return new AVL(Record(ID, name, age));
+  if (ID < tree->rec.id)
+    tree->left = insertAVL(tree->left, ID, name, age);
+  else if (ID > tree->rec.id)
+    tree->right = insertAVL(tree->right, ID, name, age);
   else
-    return node;
+    return tree;
 
-  // Update the balance factor of each node and
+  // Update the balance factor of each AVL and
   // balance the tree
-  node->height = 1 + max(height(node->left),
-               height(node->right));
-  return balanceNode(node);
+  tree->height = 1 + max(height(tree->left),
+               height(tree->right));
+  return balanceAVL(tree);
 }
 
-// Node with minimum value
-Node *nodeWithMimumValue(Node *node) {
-  Node *current = node;
+// AVL with minimum value
+AVL *AVLWithMimumValue(AVL *tree) {
+  AVL *current = tree;
   while (current->left != NULL)
     current = current->left;
   return current;
 }
 
-Node* deleteNode(Node* root, int key) {
-    if (root == nullptr) return root;
+AVL* deleteAVL(AVL* tree, int ID) {
+    if (tree == nullptr) return tree;
 
-    // Find the node to delete
-    if (key < root->key) {
-        root->left = deleteNode(root->left, key);
-    } else if (key > root->key) {
-        root->right = deleteNode(root->right, key);
+    // Find the AVL to delete
+    if (ID < tree->rec.id) {
+        tree->left = deleteAVL(tree->left, ID);
+    } else if (ID > tree->rec.id) {
+        tree->right = deleteAVL(tree->right, ID);
     } else {
-        // Node with 0 children
-        if (root->left == nullptr && root->right == nullptr) {
-            delete root;
+        // AVL with 0 children
+        if (tree->left == nullptr && tree->right == nullptr) {
+            delete tree;
             return nullptr;
         }
 
-        // Node with 1 child (right)
-        if (root->left == nullptr && root->right != nullptr) {
-            Node* temp = root->right;
-            delete root;
+        // AVL with 1 child (right)
+        if (tree->left == nullptr && tree->right != nullptr) {
+            AVL* temp = tree->right;
+            delete tree;
             return temp;
         }
 
-        // Node with 1 child (left)
-        if (root->left != nullptr && root->right == nullptr) {
-            Node* temp = root->left;
-            delete root;
+        // AVL with 1 child (left)
+        if (tree->left != nullptr && tree->right == nullptr) {
+            AVL* temp = tree->left;
+            delete tree;
             return temp;
         }
 
-        // Node with 2 children
-        Node* temp = nodeWithMimumValue(root->right); // Get the inorder successor
-        root->key = temp->key; // Copy the inorder successor's value to this node
-        root->right = deleteNode(root->right, temp->key); // Delete the inorder successor
+        // AVL with 2 children
+        AVL* temp = AVLWithMimumValue(tree->right); // Get the inorder successor
+        tree->rec = temp->rec; // Copy the inorder successor's value to this AVL
+        tree->right = deleteAVL(tree->right, temp->rec.id); // Delete the inorder successor
     }
 
-    // Update height and balance the node
-    root->height = 1 + max(height(root->left), height(root->right));
-    return balanceNode(root);
+    // Update height and balance the AVL
+    tree->height = 1 + max(height(tree->left), height(tree->right));
+    return balanceAVL(tree);
 }
 
 
 // Print the tree
-void printTree(Node *root) {
-  if (root != nullptr) {
-    printTree(root->left);
-    cout << root->key<<" ";
-    printTree(root->right);
-  }
+void printTree(AVL *tree) {
+  if (tree != nullptr)
+    {
+        printTree(tree->left);
+        std::cout << "ID: " << tree->rec.id << ", Name: " << tree->rec.name << ", Age: " << tree->rec.age << std::endl;
+        printTree(tree->right);
+    }
 }
 
 int main() {
-  Node *root = NULL;
-  root = insertNode(root, 33);
-  root = insertNode(root, 13);
-  root = insertNode(root, 53);
-  root = insertNode(root, 9);
-  root = insertNode(root, 21);
-  root = insertNode(root, 61);
-  root = insertNode(root, 8);
-  root = insertNode(root, 11);
+  AVL *root = NULL;
+  root = insertAVL(root, 1, "Saad", 19);
+  root = insertAVL(root, 2, "Aashir", 19);
+  root = insertAVL(root, 3, "Ahsan", 20);
+
   printTree(root);
-  root = deleteNode(root, 13);
-  root = deleteNode(root, 61);
+  root = deleteAVL(root, 2);
   cout << "\nAfter deleting " << endl;
   printTree(root);
 }
