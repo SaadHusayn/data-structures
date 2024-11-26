@@ -94,10 +94,10 @@ double BTreeInsertionTime(BTree *&table, int record_size){
 }
 
 
-double AVLSearchingTime(AVL *&table, int record_size){
+double AVLSearchingTime(AVL *&table, int times){
     auto start = high_resolution_clock::now();
 
-    for(int i=0;i<record_size;i++){
+    for(int i=0;i<times;i++){
         int id = getRandomID();
         table->search(id);
     }
@@ -111,10 +111,10 @@ double AVLSearchingTime(AVL *&table, int record_size){
 
 }
 
-double BSTSearchingTime(BST *&table, int record_size){
+double BSTSearchingTime(BST *&table, int times){
     auto start = high_resolution_clock::now();
 
-    for(int i=0;i<record_size;i++){
+    for(int i=0;i<times;i++){
         int id = getRandomID();
         table->search(id);
     }
@@ -128,10 +128,10 @@ double BSTSearchingTime(BST *&table, int record_size){
 
 }
 
-double BTreeSearchingTime(BTree *&table, int record_size){
+double BTreeSearchingTime(BTree *&table, int times){
     auto start = high_resolution_clock::now();
 
-    for(int i=0;i<record_size;i++){
+    for(int i=0;i<times;i++){
         int id = getRandomID();
         table->search(id);
     }
@@ -146,10 +146,10 @@ double BTreeSearchingTime(BTree *&table, int record_size){
 }
 
 
-double AVLDeletionTime(AVL *&table, int record_size){
+double AVLDeletionTime(AVL *&table, int times){
     auto start = high_resolution_clock::now();
 
-    for(int i=0;i<record_size;i++){
+    for(int i=0;i<times;i++){
         int id = getRandomID();
         table->remove(id);
     }
@@ -163,10 +163,10 @@ double AVLDeletionTime(AVL *&table, int record_size){
     return (double)((duration.count()*1.0));
 }
 
-double BSTDeletionTime(BST *&table, int record_size){
+double BSTDeletionTime(BST *&table, int times){
     auto start = high_resolution_clock::now();
 
-    for(int i=0;i<record_size;i++){
+    for(int i=0;i<times;i++){
         int id = getRandomID();
         table->remove(id);
     }
@@ -180,10 +180,10 @@ double BSTDeletionTime(BST *&table, int record_size){
     return (double)((duration.count()*1.0));
 }
 
-double BTreeDeletionTime(BTree *&table, int record_size){
+double BTreeDeletionTime(BTree *&table, int times){
     auto start = high_resolution_clock::now();
 
-    for(int i=0;i<record_size;i++){
+    for(int i=0;i<times;i++){
         int id = getRandomID();
         table->remove(id);
     }
