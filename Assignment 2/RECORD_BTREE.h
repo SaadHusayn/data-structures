@@ -20,6 +20,7 @@ public:
         this->isLeaf = isLeaf;
     }
 
+
     // Traverse the tree and print records
     void traverse() {
         for (int i = 0; i < records.size(); i++) {
@@ -69,6 +70,8 @@ public:
         root = nullptr;
         maxKeys = degree - 1;
     }
+
+    ~BTree(){delete root;}
 
     void traverse() {
         if (root)

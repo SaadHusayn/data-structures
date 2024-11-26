@@ -21,6 +21,8 @@ public:
         right = nullptr;
         height = 1;
     }
+
+    ~AVLNode(){delete left; delete right;}
 };
 
 // AVL class encapsulating the AVL tree
@@ -168,6 +170,8 @@ private:
 
 public:
     AVL() : root(nullptr) {}
+
+    ~AVL(){delete root;}
 
     void insert(Record rec) {
         root = insertAVLNode(root, rec);

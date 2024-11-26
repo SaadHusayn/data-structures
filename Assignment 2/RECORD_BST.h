@@ -13,6 +13,8 @@ public:
 
     BSTNode(Record _rec = Record(), BSTNode* _left = nullptr, BSTNode* _right = nullptr)
         : rec(_rec), left(_left), right(_right) {}
+
+    ~BSTNode(){delete left; delete right;}
 };
 
 // BST class encapsulating the Binary Search Tree
@@ -152,6 +154,8 @@ private:
 
 public:
     BST() : root(nullptr) {}
+
+    ~BST(){delete root;}
 
     void insert(Record rec) {
         root = insertNode(root, rec);
