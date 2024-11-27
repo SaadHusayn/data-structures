@@ -42,7 +42,7 @@ int getRandomID(){
 }
 
 
-double AVLInsertionTime(AVL *&table, int record_size){
+float AVLInsertionTime(AVL *&table, int record_size){
     auto start = high_resolution_clock::now();
 
     for(int i=0;i<record_size;i++){
@@ -55,11 +55,11 @@ double AVLInsertionTime(AVL *&table, int record_size){
     auto duration = duration_cast<microseconds>(stop - start);
 
 
-    return (double)((duration.count()*1.0)/record_size);
+    return (float)((duration.count()*1.0)/record_size);
 
 }
 
-double BSTInsertionTime(BST *&table, int record_size){
+float BSTInsertionTime(BST *&table, int record_size){
     auto start = high_resolution_clock::now();
 
     for(int i=0;i<record_size;i++){
@@ -72,11 +72,11 @@ double BSTInsertionTime(BST *&table, int record_size){
     auto duration = duration_cast<microseconds>(stop - start);
 
 
-    return (double)((duration.count()*1.0)/record_size);
+    return (float)((duration.count()*1.0)/record_size);
 
 }
 
-double BTreeInsertionTime(BTree *&table, int record_size){
+float BTreeInsertionTime(BTree *&table, int record_size){
     auto start = high_resolution_clock::now();
 
     for(int i=0;i<record_size;i++){
@@ -89,12 +89,12 @@ double BTreeInsertionTime(BTree *&table, int record_size){
     auto duration = duration_cast<microseconds>(stop - start);
 
 
-    return (double)((duration.count()*1.0)/record_size);
+    return (float)((duration.count()*1.0)/record_size);
 
 }
 
 
-double AVLSearchingTime(AVL *&table, int times){
+float AVLSearchingTime(AVL *&table, int times){
     auto start = high_resolution_clock::now();
 
     for(int i=0;i<times;i++){
@@ -107,11 +107,11 @@ double AVLSearchingTime(AVL *&table, int times){
     auto duration = duration_cast<microseconds>(stop - start);
 
 
-    return (double)((duration.count()*1.0));
+    return (float)((duration.count()*1.0));
 
 }
 
-double BSTSearchingTime(BST *&table, int times){
+float BSTSearchingTime(BST *&table, int times){
     auto start = high_resolution_clock::now();
 
     for(int i=0;i<times;i++){
@@ -124,11 +124,11 @@ double BSTSearchingTime(BST *&table, int times){
     auto duration = duration_cast<microseconds>(stop - start);
 
 
-    return (double)((duration.count()*1.0));
+    return (float)((duration.count()*1.0));
 
 }
 
-double BTreeSearchingTime(BTree *&table, int times){
+float BTreeSearchingTime(BTree *&table, int times){
     auto start = high_resolution_clock::now();
 
     for(int i=0;i<times;i++){
@@ -141,12 +141,12 @@ double BTreeSearchingTime(BTree *&table, int times){
     auto duration = duration_cast<microseconds>(stop - start);
 
 
-    return (double)((duration.count()*1.0));
+    return (float)((duration.count()*1.0));
 
 }
 
 
-double AVLDeletionTime(AVL *&table, int times){
+float AVLDeletionTime(AVL *&table, int times){
     auto start = high_resolution_clock::now();
 
     for(int i=0;i<times;i++){
@@ -160,10 +160,10 @@ double AVLDeletionTime(AVL *&table, int times){
 
 
 
-    return (double)((duration.count()*1.0));
+    return (float)((duration.count()*1.0));
 }
 
-double BSTDeletionTime(BST *&table, int times){
+float BSTDeletionTime(BST *&table, int times){
     auto start = high_resolution_clock::now();
 
     for(int i=0;i<times;i++){
@@ -177,10 +177,10 @@ double BSTDeletionTime(BST *&table, int times){
 
 
 
-    return (double)((duration.count()*1.0));
+    return (float)((duration.count()*1.0));
 }
 
-double BTreeDeletionTime(BTree *&table, int times){
+float BTreeDeletionTime(BTree *&table, int times){
     auto start = high_resolution_clock::now();
 
     for(int i=0;i<times;i++){
@@ -194,7 +194,7 @@ double BTreeDeletionTime(BTree *&table, int times){
 
 
 
-    return (double)((duration.count()*1.0));
+    return (float)((duration.count()*1.0));
 }
 
 
@@ -205,9 +205,9 @@ signed main(){
     AVL *avl_table = new AVL();
     BST *bst_table = new BST();
     BTree *btree_table = new BTree(3);
-    vector<double> avg_insertion_times(3);
-    vector<double> avg_searching_times(3);
-    vector<double> avg_deletion_times(3);
+    vector<float> avg_insertion_times(3);
+    vector<float> avg_searching_times(3);
+    vector<float> avg_deletion_times(3);
 
 
     string operations[3] = {"Insertion", "Searching", "Deletion"};
