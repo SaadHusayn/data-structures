@@ -127,22 +127,15 @@ int main()
     map.HashInsert(21);
     map.print();
 
-    (map.HashFind(7)) ? (cout << "found") : (cout << "notfound");
-    cout << endl;
-    (map.HashFind(11))? (cout << "found") : (cout << "notFound");
-    cout << endl;
 
 
-    map.HashDelete(111);
     map.HashDelete(20);
     map.HashDelete(21);
     cout << endl;
 
     map.print();
-    (map.HashFind(117)) ? (cout << "found") : (cout << "notfound");
     cout<<endl;
 
     map.HashDelete(117);
-    (map.HashFind(117)) ? (cout << "found") : (cout << "notfound");
     map.print();
 }

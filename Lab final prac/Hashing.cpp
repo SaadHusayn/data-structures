@@ -36,7 +36,7 @@ class Hash{
             }
             else{
                 Node* temp = hashTable[index];
-                while(temp != nullptr){
+                while(temp->Next != nullptr){
                     temp = temp->Next;
                 }
                 temp->Next = newNode;
@@ -68,15 +68,25 @@ class Hash{
             return;
         }
 
-        while(temp->Next != nullptr && temp->val != key){
+        if(temp->val == key){
+            //first one contains key and we have further nodes
+            auto tmp = temp->Next;
+            delete temp;
+            hashTable[index] = tmp;
+            return;
+        }
+
+        while(temp->Next != nullptr && temp->Next->val != key){
             temp = temp->Next;
         }
 
-        if(temp == nullptr){
+
+
+        if(temp->Next == nullptr){
             return;
         }
         else{
-            Node* toDelete = temp;
+            Node* toDelete = temp->Next;
             temp->Next = temp->Next->Next;
             delete toDelete;
             return; 
@@ -94,6 +104,7 @@ int main(){
     h1.hashInsert(49);
 
     h1.print();
+    cout<<endl;
     h1.ToDelete(23);
     h1.ToDelete(32);
     h1.ToDelete(10);

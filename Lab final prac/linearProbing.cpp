@@ -53,7 +53,7 @@ class HashMap{
         int hashIndex = hashFunction(val);
         for(int i=0;i<table_size;i++){
             int index = (hashIndex + i)%table_size;
-            if(htable[index] == -1 || htable[index] == -2){
+            if(htable[index] == -1){
                 htable[index] = val;
                 cout<<"Inserted"<<endl;
                 curr ++;
