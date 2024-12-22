@@ -37,9 +37,9 @@ BT *find(BT *tree, int val)
         return tree;
 
     if (val < tree->val)
-        find(tree->left, val);
+        return find(tree->left, val);
     else
-        find(tree->right, val);
+        return find(tree->right, val);
 }
 
 void preOrder(BT *tree)

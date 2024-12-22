@@ -25,7 +25,7 @@ int partition(int arr[], int s, int e){
     int i=s;
     int j=e;
     while(i<pivotIndex && j>pivotIndex){
-        while(arr[i]<=pivot) i++;
+        while(arr[i]<=pivot) i++; //koi bara milega tu swap krenge 
 
         while(arr[j]>=pivot) j--;
 
@@ -47,7 +47,6 @@ void quickSort(int arr[], int s, int e){
     quickSort(arr, s, p-1);
     quickSort(arr, p+1, e);
 
-    printArray(arr, s, e);
 }
 
 

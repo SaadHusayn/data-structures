@@ -36,7 +36,7 @@ Node *newNode(int key) {
 
 // Rotate right
 Node *rightRotate(Node *y) {
-  Node *x = y->left;
+  Node *x = y->left; //x middle
   Node *T2 = x->right;
   x->right = y;
   y->left = T2;
