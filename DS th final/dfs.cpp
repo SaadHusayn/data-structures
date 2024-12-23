@@ -15,12 +15,6 @@ void displayAdjacencyList(vector<vector<int>> v){
 }
 
 void dfs(vector<vector<int>> Adjlist, int vertex, vector<bool> &visited, vector<int> &path){
-    // if(visited[vertex]) {
-    //     cout<<"\nAlready visited vertex : "<<vertex<<endl;
-    //     return;
-    // }
-
-    // cout<<"\nVisiting vertex "<<vertex<<endl;
     visited[vertex] = 1;
     path.push_back(vertex);
 
@@ -36,16 +30,6 @@ void dfs(vector<vector<int>> Adjlist, int vertex, vector<bool> &visited, vector<
     path.pop_back();
 }
 
-// class Node{
-//     public:
-//         int data;
-//         Node *next;
-
-//         Node(int _data=0, Node *_next = nullptr){
-//             data = _data;
-//             next = _next;
-//         }
-// };
 
 vector<vector<int>> getAdjList(vector<pair<int, int>> edges,int num_vertices){
     vector<vector<int>> v(num_vertices);
@@ -116,33 +100,4 @@ int main(){
     vector<vector<int>> v = getAdjList(edges, num_vertices);
     vector<int> visited(num_vertices, 0);
     cout<<hasCycle(0, -1, v, visited)<<endl;
-    // vector<pair<int, int>> edgesList =  getEdgesList(v);
-
-    // for(int i=0;i<edgesList.size();i++){
-    //     cout<<"("<<edgesList[i].first<<", "<<edgesList[i].second<<") ";
-    // }cout<<endl;
-    
-    // vector<vector<int>> adjMatrix = getAdjMatrixFromAdjList(v);
-
-    // v = getAdjListFromAdjMatrix(adjMatrix);
-
-    // for(int i=0;i<num_vertices;i++){
-    //     for(int j=0;j<num_vertices;j++){
-    //         cout<<adjMatrix[i][j]<<" ";
-    //     }
-    //     cout<<endl;
-    // }
-    // displayAdjacencyList(v);
-    
-    // cout<<endl;
-
-    // vector<bool> visited(num_vertices, false);
-
-    // vector<int> path;
-
-    // dfs(v, 0, visited, path); //0 is the starting node
-
-    // cout<<endl;
-
-    // for(auto i:visited) cout<<i<<" ";
 }
